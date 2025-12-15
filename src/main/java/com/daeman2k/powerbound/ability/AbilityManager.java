@@ -89,7 +89,7 @@ public class AbilityManager {
 
         // sample effect parsing (glow, slowness, weakness, wither)
         if (eff != null) {
-            if (eff.contains("slowness")) target.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 60, 1));
+            if (eff.contains("slowness")) target.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 60, 1));
             if (eff.contains("weakness")) target.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 60, 1));
             if (eff.contains("wither")) target.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 60, 1));
             if (eff.contains("glow")) Bukkit.getScheduler().runTask(plugin, () -> target.setGlowing(true));
@@ -105,7 +105,7 @@ public class AbilityManager {
             }
 
             if ("self_slowness".equalsIgnoreCase(eff)) {
-                player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 60, 1));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 60, 1));
             }
         }
 
@@ -113,16 +113,10 @@ public class AbilityManager {
         if (cd <= 0) cd = 5;
         cooldowns.setCooldown(player.getUniqueId(), cdKey, cd * 1000L);
 
-        // play particle and sound if configured
-        if (ability.getParticle() != null) {
-            try {
-                org.bukkit.Particle pType = org.bukkit.Particle.valueOf(ability.getParticle().toUpperCase());
-                target.getWorld().spawnParticle(pType, target.getLocation(), 8);
-            } catch (Exception ignored) {}
-        }
-        if (ability.getSound() != null) {
-            try { target.getWorld().playSound(target.getLocation(), org.bukkit.Sound.valueOf(ability.getSound()), 1f, 1f); } catch (Exception ignored) {}
-        }
+        // play particle and sound via EffectsUtil
+        com.daeman2k.powerbound.effects.EffectsUtil effects = new com.daeman2k.powerbound.effects.EffectsUtil(plugin);
+        effects.playParticle(target.getLocation(), ability.getParticle(), ability.getParticle_count(), ability.getParticle_offset());
+        effects.playSound(target.getLocation(), ability.getSound(), (float) ability.getSound_volume(), (float) ability.getSound_pitch());
         return true;
     }
 

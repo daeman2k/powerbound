@@ -43,22 +43,16 @@ public class RelicManager {
 
         if (active.getEffects() != null) {
             for (String s : active.getEffects()) {
-                if (s.contains("slowness")) p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 60, 1));
+                if (s.contains("slowness")) p.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 60, 1));
                 if (s.contains("weakness")) p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 60, 1));
                 if (s.contains("wither")) p.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 60, 1));
             }
         }
 
-        // Play particle and sound if set
-        if (active.getParticle() != null) {
-            try {
-                org.bukkit.Particle pType = org.bukkit.Particle.valueOf(active.getParticle().toUpperCase());
-                p.getWorld().spawnParticle(pType, p.getLocation(), 10);
-            } catch (Exception ignored) {}
-        }
-        if (active.getSound() != null) {
-            try { p.getWorld().playSound(p.getLocation(), org.bukkit.Sound.valueOf(active.getSound()), 1f, 1f); } catch (Exception ignored) {}
-        }
+        // Play particle and sound via EffectsUtil
+        com.daeman2k.powerbound.effects.EffectsUtil effects = new com.daeman2k.powerbound.effects.EffectsUtil(plugin);
+        effects.playParticle(p.getLocation(), active.getParticle(), active.getParticle_count(), active.getParticle_offset());
+        effects.playSound(p.getLocation(), active.getSound(), (float) active.getSound_volume(), (float) active.getSound_pitch());
 
         // set cooldown
         int cdSeconds = active.getCooldown();
