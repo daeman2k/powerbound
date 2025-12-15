@@ -29,18 +29,33 @@ abilities:
       damage: 3
       cooldown_seconds: 5
       sound: "ENTITY_PLAYER_ATTACK_KNOCKBACK"
+      sound_volume: 0.6
+      sound_pitch: 1.0
+      particle: "CLOUD"
+      particle_count: 6
+      particle_offset: 0.2
       effect: aoe
       extra: "1.5 HP"
     heavy:
       damage: 4
       cooldown_seconds: 8
       sound: "ENTITY_PLAYER_ATTACK_STRONG"
+      sound_volume: 0.9
+      sound_pitch: 1.0
+      particle: "SWEEP_ATTACK"
+      particle_count: 8
+      particle_offset: 0.3
       effect: armor_ignore
       extra: "2 HP"
     ultimate:
       damage: 8
       cooldown_seconds: 20
       sound: "ENTITY_PLAYER_ATTACK_SWEEP"
+      sound_volume: 0.9
+      sound_pitch: 1.0
+      particle: "SWEEP_ATTACK"
+      particle_count: 10
+      particle_offset: 0.4
       effect: cleave
       extra: "4 HP"
 
@@ -60,7 +75,6 @@ abilities:
       damage: 9
       cooldown_seconds: 18
       effect: waste_on_miss
-    notes: "Cooldowns longer than sword"
 
   bow:
     light:
@@ -138,7 +152,12 @@ boss_relics:
       damage: 6
       effects: [slowness, weakness]
       cooldown: 90
-      sound: "warden_sonic_boom"
+      sound: "ENTITY_WARDEN_HURT"
+      sound_volume: 1.0
+      sound_pitch: 1.0
+      particle: "CLOUD"
+      particle_count: 12
+      particle_offset: 0.4
 
   crimson_wither_star:
     title: "Crimson Wither Star"
@@ -148,6 +167,10 @@ boss_relics:
       damage: 7
       effects: [wither_II_3s]
       cooldown: 110
+      sound: "ENTITY_WITHER_HURT"
+      particle: "SMOKE_LARGE"
+      particle_count: 12
+      particle_offset: 0.35
 
   dragon_egg:
     title: "Dragon Egg"
@@ -157,6 +180,10 @@ boss_relics:
       damage: 8
       effects: [knockback_wave]
       cooldown: 100
+      sound: "ENTITY_ENDER_DRAGON_FLAP"
+      particle: "CLOUD"
+      particle_count: 10
+      particle_offset: 0.3
 
 relic_pickup:
   global_title: "<player> has claimed the %relic%"
