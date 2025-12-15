@@ -13,8 +13,12 @@ public class ConfigParsingTest {
             Assertions.assertNotNull(cfg.getAbilities().get("sword").get("light"));
             Assertions.assertTrue(cfg.getAbilities().get("sword").get("light").getCooldown_seconds() > 0);
             // relic actives must have cooldown and optional particle/sound
-            Assertions.assertNotNull(cfg.getBossRelics().get("crimson_wither_star").getActive());
-            Assertions.assertTrue(cfg.getBossRelics().get("crimson_wither_star").getActive().getCooldown() > 0);
+            var crimson = cfg.getBossRelics().get("crimson_wither_star");
+            Assertions.assertNotNull(crimson, "Missing crimson_wither_star; available keys: " + cfg.getBossRelics().keySet());
+            Assertions.assertNotNull(crimson.getActive());
+            Assertions.assertTrue(crimson.getActive().getCooldown() > 0);
+            // heavy sword should have particle config parsed
+            Assertions.assertTrue(cfg.getAbilities().get("sword").get("heavy").getParticle_count() >= 1);
         }
     }
 }
