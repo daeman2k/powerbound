@@ -1,0 +1,88 @@
+{
+  "base_damage": {
+    "sword": 8,
+    "axe": 9,
+    "bow": "variable",
+    "crossbow": 11,
+    "trident": 9
+  },
+  "axe_damage_modifier_percent": -10,
+  "strength_scaling": {
+    "0": 0.5,
+    "1": 1.0,
+    "2": 1.05,
+    "3": 1.10,
+    "4": 1.15,
+    "5": 1.25,
+    "6": 1.35
+  },
+  "abilities": {
+    "sword": {
+      "light": { "damage": 2, "extra": "1 HP" },
+      "medium": { "damage": 3, "effect": "aoe", "extra": "1.5 HP", "cooldown_seconds": 5, "sound": "ENTITY_PLAYER_ATTACK_KNOCKBACK" },
+      "heavy": { "damage": 4, "effect": "armor_ignore", "extra": "2 HP", "cooldown_seconds": 8, "sound": "ENTITY_PLAYER_ATTACK_STRONG" },
+      "ultimate": { "damage": 8, "effect": "cleave", "extra": "4 HP", "cooldown_seconds": 20, "sound": "ENTITY_PLAYER_ATTACK_SWEEP" }
+    },
+    "axe": {
+      "light": { "damage": 2, "cooldown_seconds": 3 },
+      "medium": { "damage": 3, "effect": "shield_disable", "cooldown_seconds": 7 },
+      "heavy": { "damage": 5, "effect": "self_slowness", "cooldown_seconds": 10 },
+      "ultimate": { "damage": 9, "effect": "waste_on_miss", "notes": "Cooldowns longer than sword", "cooldown_seconds": 18 }
+    },
+    "bow": {
+      "light": { "damage": 1, "cooldown_seconds": 2 },
+      "medium": { "damage": 2, "effect": "glow", "cooldown_seconds": 4 },
+      "heavy": { "damage": 3, "effect": "spread", "cooldown_seconds": 6 },
+      "ultimate": { "damage": 7, "effect": "charged", "cooldown_seconds": 12 }
+    },
+    "crossbow": {
+      "light": { "damage": 2, "cooldown_seconds": 2 },
+      "medium": { "damage": 2, "effect": "heavy_slow", "cooldown_seconds": 4 },
+      "heavy": { "damage": 4, "effect": "aoe", "cooldown_seconds": 7 },
+      "ultimate": { "damage": 10, "effect": "execute_under_50pct", "cooldown_seconds": 25 }
+    },
+    "trident": {
+      "light": { "damage": 2, "cooldown_seconds": 2 },
+      "medium": { "damage": 3, "effect": "pull", "cooldown_seconds": 5 },
+      "heavy": { "damage": 4, "effect": "lightning", "cooldown_seconds": 8 },
+      "ultimate": { "damage": 8, "effect": "storm_zone", "cooldown_seconds": 20 }
+    }
+  },
+  "gui": {
+    "size": 54,
+    "border": "glass",
+    "center_slot": 13,
+    "center_display": {
+      "strength_label": "Strength",
+      "tier_label": "Tier",
+      "example": "Strength: 4 | Tier: HEAVY | Damage: +15%"
+    },
+    "slots": {
+      "row1": [0,1,2,3,4,5,6],
+      "row2": [7,8,9,10,11,12,13],
+      "ability_row": [9,10,11,12,13],
+      "boss_relic_panel": 28,
+      "reroll_button": 30,
+      "help_panel": 32
+    }
+  },
+  "boss_relics": {
+    "warden_heart": {
+      "title": "Warden Heart",
+      "passive": "faint_darkness_pulses",
+      "active": { "name": "Sonic Rupture", "damage": 6, "effects": ["slowness","weakness"], "cooldown": 90, "sound": "warden_sonic_boom" }
+    },
+    "crimson_wither_star": {
+      "title": "Crimson Wither Star",
+      "passive": "wither_I_on_hit_1s",
+      "active": { "name": "Crimson Detonation", "damage": 7, "effects": ["wither_II_3s"], "cooldown": 110 }
+    },
+    "dragon_egg": {
+      "title": "Dragon Egg",
+      "passive": "slight_jump_boost",
+      "active": { "name": "Void Descent", "damage": 8, "effects": ["knockback_wave"], "cooldown": 100 }
+    }
+  },
+  "relic_pickup": { "global_title": "<player> has claimed the %relic%", "sound": "end_portal_frame_fill", "particles": "minimal" },
+  "notes": "Server-side, Paper 1.21.10 intended defaults. All damage numbers are per the specification and balanced around Netherite armor."
+}
