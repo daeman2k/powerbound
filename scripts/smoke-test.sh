@@ -4,15 +4,16 @@ set -euo pipefail
 # Simple smoke test runner for local Paper server
 # Usage: ./scripts/smoke-test.sh path/to/paper.jar
 
-PAPER_JAR=${1:-paper-1.21.2.jar}
+PAPER_JAR=${1:-purpur-1.21.11.jar}
 BUILD_DIR=$(pwd)
 TMPDIR=$(mktemp -d)
 echo "Using tmp dir: $TMPDIR"
 pushd "$TMPDIR" >/dev/null
 
-echo "Downloading Paper if needed..."
+echo "Downloading Purpur if needed..."
 if [ ! -f "$PAPER_JAR" ]; then
-  curl -Lo $PAPER_JAR https://api.papermc.io/v2/projects/paper/versions/1.21.2/builds/1/downloads/paper-1.21.2-1.jar || true
+  # Try to download a reasonable Purpur build for 1.21.11 (best-effort)
+  curl -Lo "$PAPER_JAR" "https://api.papermc.io/v2/projects/purpur/versions/1.21.11/builds/1/downloads/purpur-1.21.11-1.jar" || true
 fi
 
 mkdir -p plugins

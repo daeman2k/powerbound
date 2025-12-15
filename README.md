@@ -27,5 +27,5 @@ Defaults are in `src/main/resources/powerbound/strength.yml` and `strength.json`
 
 Build
 -----
-Run `mvn package` to build; note: Maven needs access to PaperMC and Maven Central to resolve dependencies (Paper API is a snapshot hosted on papermc's repo). If your environment blocks external repositories, build may fail locally.
+Run `mvn package` to build; note: Maven needs access to Papermc and Maven Central to resolve dependencies. This branch targets Purpur 1.21.11 (tested against Purpur-compatible Paper API 1.21.11). If your environment blocks external repositories, build may fail locally.
 
