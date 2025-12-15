@@ -1,0 +1,16 @@
+name: Powerbound
+main: com.daeman2k.powerbound.PowerboundPlugin
+version: 0.1.0
+api-version: 1.21
+author: daeman2k
+description: Powerbound - Strength & abilities system
+commands:
+  strength:
+    description: Open the strength GUI
+    usage: /strength
+  ability:
+    description: Trigger an ability
+    usage: /ability <light|medium|heavy|ultimate>
+  claimrelic:
+    description: Claim a boss relic (admin/test)
+    usage: /claimrelic <warden|wither|dragon>

@@ -33,17 +33,4 @@ public class RelicCommand implements CommandExecutor {
         p.sendMessage("You have claimed: " + args[0]);
         return true;
     }
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) return true;
-        Player p = (Player) sender;
-        if (args.length == 0) {
-            p.sendMessage("Usage: /claimrelic <warden|wither|dragon>");
-            return true;
-        }
-        relicManager.claim(p, args[0]);
-        p.sendMessage("You have claimed: " + args[0]);
-        return true;
-    }
 }

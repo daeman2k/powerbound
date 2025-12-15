@@ -11,7 +11,11 @@ Current status: core systems implemented (config loader, default configs, streng
 
 Smoke testing
 -------------
-Run `mvn package`, then execute `./scripts/smoke-test.sh` to start a local Paper server with the built plugin and do manual smoke checks (join server, test /strength, /ability, /claimrelic). The script attempts to download Paper if not present.
+Run `mvn package`, then execute `./scripts/smoke-test.sh` to start a local Purpur/Paper server with the built plugin and do manual smoke checks (join server, test /strength, /ability, /claimrelic). The script attempts to download Purpur 1.21.11 by default if not present.
+
+CI smoke job
+------------
+A GitHub Actions job `smoke` is included which will attempt to start a Purpur 1.21.11 server, wait for it to become available, run a `mcstatus` ping, and perform an RCON check if `mcrcon` is available on the runner. This is best-effort: runners vary and RCON may not be installed; the job will gracefully skip the RCON check if unavailable.
 
 
 Commands

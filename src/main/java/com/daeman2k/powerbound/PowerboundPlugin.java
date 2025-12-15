@@ -17,7 +17,7 @@ public final class PowerboundPlugin extends JavaPlugin {
     public void onEnable() {
         // Load config from YAML resource
         try {
-            this.config = ConfigLoader.loadFromYaml(getResourceAsStream("powerbound/strength.yml"));
+            this.config = ConfigLoader.loadFromYaml(getResource("powerbound/strength.yml"));
             getLogger().info("Loaded strength config: base sword damage=" + config.getBaseDamage().getOrDefault("sword", "n/a"));
         } catch (Exception e) {
             getLogger().severe("Failed to load strength config: " + e.getMessage());
