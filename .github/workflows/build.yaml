@@ -86,3 +86,22 @@ jobs:
           else
             echo "mcrcon not available; skipped RCON check"
           fi
+      - name: Verify plugin loaded via RCON and server log
+        run: |
+          sudo apt-get update && sudo apt-get install -y mcrcon || true
+          # Verify server log contains Powerbound enable message
+          if ! grep -q "\[Powerbound\] Enabling Powerbound" .server/server.log; then
+            echo "Powerbound enable message not found in server.log";
+            tail -n 200 .server/server.log || true;
+            exit 1;
+          fi
+          # Verify 'plugins' via RCON lists Powerbound
+          if command -v mcrcon; then
+            if ! mcrcon -H 127.0.0.1 -P 25575 -p secret "plugins" | grep -q "Powerbound"; then
+              echo "Powerbound not present in plugins list via RCON";
+              mcrcon -H 127.0.0.1 -P 25575 -p secret "plugins" || true;
+              exit 1;
+            fi
+          else
+            echo "mcrcon not available; skipped RCON plugin verification"
+          fi
